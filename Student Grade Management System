@@ -1,0 +1,63 @@
+﻿using System;
+class Program
+{
+     static void Main(string[] args)
+    {
+        bool continueProgram = true;
+         
+            while (continueProgram)
+        {
+            Console.WriteLine("Enter your student name");
+            string name = Console.ReadLine();
+            Console.WriteLine("How many grades to enter?");
+            if (int.TryParse(Console.ReadLine(), out int gradeCount) && gradeCount > 0)
+            {
+                int[] grades = new int[gradeCount];
+
+                for (int i = 0; i < grades.Length; i++)
+                {
+                    Console.WriteLine($"Enter grade {i + 1}:");
+                    if (int.TryParse(Console.ReadLine(), out int grade) && grade >= 0 && grade <= 100)
+                        grades[i] = grade;
+                }
+
+                double average = CalculateAverage(grades);
+                string letterGrade = GetLetterGrade((int)average);
+                DisplayGradeInfo(name, aversage, letterGrade);
+            }
+
+            Console.WriteLine("Enter another student? (yes/no):");
+            string response = Console.ReadLine();
+            continueProgram = response.Equals("Yes", StringComparison.OrdinalIgnoreCase.OrdinalIgnoreCase);
+                // Process the grades
+            }
+        }
+
+        static double CalculateAverage(int[] grades)
+        {
+            int sum = 0;
+            for (int i = 0; i < grades.Length; i++)
+            {
+                sum += grades[i];
+            }
+            return (double)sum / grades.Length;
+        }
+
+        static string GetLetterGrade(int grade)
+        {
+            return grade switch 
+            {
+                >= 90 => "A",
+                >= 80 => "B",
+                >= 70 => "C",
+                >= 60 => "D",
+                _ => "F"
+            };
+        }
+
+        static void DisplayGradeInfo(string name, double average, string letterGrade)
+    {
+        Console.WriteLine($"\n{name} - Average: {average:F2}, LetterGrade: {letterGrade}\n");
+    }
+
+    }
