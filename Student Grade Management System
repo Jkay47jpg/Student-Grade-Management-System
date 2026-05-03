@@ -60,4 +60,4 @@ class Program
         Console.WriteLine($"\n{name} - Average: {average:F2}, LetterGrade: {letterGrade}\n");
     }
 
-    }
+}
